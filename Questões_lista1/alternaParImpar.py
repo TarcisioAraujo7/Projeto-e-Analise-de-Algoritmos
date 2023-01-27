@@ -6,18 +6,47 @@ Implemente as duas soluções e teste-as.
 a) com a possibilidade de usar um vetor auxiliar de mesmo tamanho do vetor de entrada;
 b) sem a possibilidade de usar espaço adicional.
 '''
+# A)
 
+def alternaParImparA(vetorA,n):
+
+    vetorAux = []
+    saida = []
+
+    for i in range(n):
+        saida.append(0)
+
+    for i in range(n//2):
+        vetorAux.append(0)
+
+    auxiliar = 0
+    for i in range(n):
+        if vetorA[i] % 2 != 0:
+            vetorAux[auxiliar] = vetorA[i]
+            vetorA[i] = -1
+            auxiliar = auxiliar + 1
+
+    auxiliar = 0
+    auxiliarImpar = 0
+    for i in range(n):
+        if vetorA[i] != -1:
+            saida[auxiliar] = vetorA[i]
+            saida[auxiliar + 1] = vetorAux[auxiliarImpar]
+
+            auxiliar = auxiliar + 2
+            auxiliarImpar = auxiliarImpar + 1
+
+    return saida
 
 # B)
 
-def alternaParImpar(vetorA, n):
+def alternaParImparB(vetorA, n):
 
     saida = []
     
     for i in range(n):
-        saida.append(0)
-        
-    print(saida)
+        saida.append(0) # complexidade do append = con
+
     auxPar = 0
     auxImpar = 1
     for i in range(n):
@@ -30,4 +59,6 @@ def alternaParImpar(vetorA, n):
 
     return saida
 
-print(alternaParImpar([1,4,3,1,2,2],6))
+
+print(alternaParImparA([1,1,1,2,2,2],6))
+print(alternaParImparB([1,4,3,1,2,2],6))
