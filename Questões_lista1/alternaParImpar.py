@@ -74,17 +74,14 @@ def alternaParImparC(vetorA, n):
                     auxiliar = auxiliar + 1
                 else:
                     auxiliar = auxiliar + 1
-                    
+
     auxiliar = n-2
     for i in range(n // 2):
-        
-        print(i, auxiliar)
         if i % 2 != 0:
             auxTroca = vetorA[auxiliar]
             vetorA[auxiliar] = vetorA[i]
             vetorA[i] = auxTroca
             auxiliar = auxiliar - 2
-
 
     return vetorA
 
