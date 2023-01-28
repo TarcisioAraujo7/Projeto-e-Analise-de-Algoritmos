@@ -38,7 +38,6 @@ def alternaParImparA(vetorA,n):
 
     return saida
 
-# B)
 
 def alternaParImparB(vetorA, n):
 
@@ -57,8 +56,28 @@ def alternaParImparB(vetorA, n):
             saida[auxImpar] = vetorA[i]
             auxImpar = auxImpar + 2
 
-    return saida
+    return saida   
+
+# B)
+
+def alternaParImparC(vetorA, n):
+
+    auxiliar = n // 2
+    for i in range(n // 2):
+        if vetorA[i] % 2 != 0:
+            iaux = -1
+            while iaux == -1:
+                if vetorA[auxiliar] % 2 == 0:
+                    iaux = vetorA[auxiliar]
+                    vetorA[auxiliar] = vetorA[i]
+                    vetorA[i] = iaux
+                    auxiliar = auxiliar + 1
+                else:
+                    auxiliar = auxiliar + 1
+
+    print(vetorA)
 
 
 print(alternaParImparA([1,1,1,2,2,2],6))
 print(alternaParImparB([1,4,3,1,2,2],6))
+alternaParImparC([1,1,1,2,2,2,1,2],8)
