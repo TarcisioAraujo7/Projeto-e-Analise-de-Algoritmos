@@ -74,10 +74,21 @@ def alternaParImparC(vetorA, n):
                     auxiliar = auxiliar + 1
                 else:
                     auxiliar = auxiliar + 1
+                    
+    auxiliar = n-2
+    for i in range(n // 2):
+        
+        print(i, auxiliar)
+        if i % 2 != 0:
+            auxTroca = vetorA[auxiliar]
+            vetorA[auxiliar] = vetorA[i]
+            vetorA[i] = auxTroca
+            auxiliar = auxiliar - 2
 
-    print(vetorA)
+
+    return vetorA
 
 
-print(alternaParImparA([1,1,1,2,2,2],6))
-print(alternaParImparB([1,4,3,1,2,2],6))
-alternaParImparC([1,1,1,2,2,2,1,2],8)
+# print(alternaParImparA([1,1,1,2,2,2],6))
+# print(alternaParImparB([1,4,3,1,2,2],6))
+print(alternaParImparC([1,1,1,2,2,2,1,2],8))
