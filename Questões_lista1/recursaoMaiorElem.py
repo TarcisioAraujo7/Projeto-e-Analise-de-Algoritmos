@@ -2,32 +2,33 @@
 Elabore dois algoritmos para calcular o maior elemento de um vetor X de n elementos,
 um deles usando indução fraca e o outro usando indução forte.
 
-algoritmo maiorIndFraca(X, n)
-inicio
-	se n = 0
-	então
-	    return X[n]
-	senão
-	    maior := maiorIndFraca(X, n-1)
-	    se X[n] >= maior
-	    então
-	        return X[n]
-	    senão
-	        return maior
-	    
-
-fim
-
 '''
+# Indução forte
 
-def maior(X, n):
+lista = [2,3,5,7,2,3,6,2,7,5]
+
+def maiorForte(X, n):
     if n == 0:
         return X[n]
     else:
-        maiorNum = maior(X, n-1)
-        if X[n] >= maiorNum:
-            return X[n]
+        maiorNum = maiorForte(X, n-1)
+        if X[n-1] >= maiorNum:
+            return X[n-1]
         else:
-            retur maiorNum
+            return maiorNum
 
-print(maior([1,2,3,1,4,2,41,1,2,4,6],11))
+print(maiorForte(lista,10))
+
+# Indução fraca
+
+def maiorFraco(X, n, maior):
+    if n == 0:
+        return maior
+    else:
+        if X[n-1] >= maior:
+            maior = X[n-1]
+            return maiorFraco(X,n-1,maior)
+        else:
+            return maiorFraco(X,n-1,maior)
+
+print(maiorFraco(lista,10,lista[0]))
