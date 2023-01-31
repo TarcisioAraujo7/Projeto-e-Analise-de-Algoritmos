@@ -21,9 +21,6 @@ início
 
 
 fim
-
-'''
-
 def contaZeros(X,n):
     pivo = n // 2
     print(pivo, X[pivo])
@@ -80,3 +77,38 @@ x = 10
  
 # Function call
 result = binary_search(arr, 0, len(arr)-1, x)
+
+'''
+
+
+def checarCasos(X,n):
+    if n == 0 or X[0] == 1:
+        return 0
+    if X[n-1] == 0:
+        return n
+    return -1
+
+
+def buscaBinaria01(X, inicio, fim):
+    metade = inicio  + (fim - inicio)//2
+    if X[metade] == 0 and X[metade+1] == 1:
+        return metade +1
+    if X[metade] == 1 and X[metade-1] == 0:
+        return metade
+    if X[metade] == 1 and X[metade-1] == 1:
+        return buscaBinaria01(X, inicio, metade-1)
+    if X[metade] == 0 and X[metade+1] == 0:
+        return buscaBinaria01(X, metade+1, fim)
+
+def contarZeros(X,n):
+    checagem = checarCasos(X,n)
+    if checagem != -1:
+        return checagem
+    else:
+        return buscaBinaria01(X,0,n)
+
+
+lista = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
+n= len(lista)
+
+print(contarZeros(lista,n))
