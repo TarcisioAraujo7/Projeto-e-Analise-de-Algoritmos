@@ -48,7 +48,7 @@ def uniao_difsimetrica(conjA, conjB, n, m):
 
 
 cjA = [1,2,4,6,7,8]
-cjB = [1,2,4,6,7,8,9]
+cjB = [1,2,4,6,7,9]
 
 n = len(cjA) 
 m = len(cjB) 
