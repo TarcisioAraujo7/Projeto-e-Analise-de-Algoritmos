@@ -17,9 +17,8 @@ def intercala(Y, comeco, meio, fim):
     print("Começo", comeco)
     print("Meio", meio)
     print("Fim", fim)
-    print(Y, '\n')
 
-    if tamanhoA > tamanhoB:
+    '''if tamanhoA > tamanhoB:
         tamanhoA = tamanhoA - 1
         tamanhoB = tamanhoB + 1
 
@@ -31,36 +30,37 @@ def intercala(Y, comeco, meio, fim):
     
         for z in range(0, tamanhoB):
             vetorB[z] = Y[meio  + z ]
-    else:
-        vetorA = [0] * (tamanhoA)
-        vetorB = [0] * (tamanhoB)
-        for x in range(0, tamanhoA):
-            vetorA[x] = Y[comeco + x]
+    else:'''
+
+    vetorA = [0] * (tamanhoA)
+    vetorB = [0] * (tamanhoB)
+    for x in range(0, tamanhoA):
+        vetorA[x] = Y[comeco + x]
     
-        for z in range(0, tamanhoB):
-            vetorB[z] = Y[meio + 1 + z ]
+    for z in range(0, tamanhoB):
+        vetorB[z] = Y[meio + 1 + z ]
     
     #[9,3,0,5,8,4]
     
     print(vetorA, vetorB)
+    print('\n')
 
     i = 0
     j = 0 
     k = comeco
 
-    while i < tamanhoA and j < tamanhoB:
-        if vetorA[i] <= vetorB[j]:
-            Y[k] = vetorA[i]
+    while j < tamanhoB:
+        if vetorA[i] > vetorB[j] and i < j:
+            print("Contabilizou um")
             i = i + 1 
         else:
-            print("AAAAAAAAAAAAAAAAAAAAAAAA")
-            Y[k] = vetorB[j]
+            
             j = j + 1 
             
         k = k + 1
 
 
-    while i < tamanhoA:
+    '''while i < tamanhoA:
         Y[k] = vetorA[i]
         i = i + 1
         k = k + 1
@@ -69,7 +69,7 @@ def intercala(Y, comeco, meio, fim):
     while j < tamanhoB:
         Y[k] = vetorB[j]
         j = j + 1
-        k = k + 1
+        k = k + 1'''
     
 
 
