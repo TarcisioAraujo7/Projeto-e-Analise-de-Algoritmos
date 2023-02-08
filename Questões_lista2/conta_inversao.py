@@ -1,9 +1,28 @@
+'''
+2. O número de inversões de um vetor V de n elementos é o número de pares ordenados
+(i,j) tais que 1 ≤ i < j ≤ n e V[i] > V[j]. Adapte o Mergesort para calcular o número
+de inversões de um vetor dado. O consumo de tempo de sua função deve ser O(n log n)
+no pior caso. Por exemplo, o vetor [1, 3, 4, 2] tem duas inversões pois possui dois pares
+(i,j) que obedecem à restrição, que são, (2,4) e (3,4).
+'''
 
 def intercala(Y, comeco, meio, fim):
+
+
 
     tamanhoA = meio - comeco + 1
     tamanhoB = fim - meio 
     
+    '''print(tamanhoA, " - ", tamanhoB)
+    print("Começo", comeco)
+    print("Meio", meio)
+    print("Fim", fim)'''
+
+    if tamanhoA > tamanhoB:
+        tamanhoA = tamanhoA - 1
+        tamanhoB = tamanhoB + 1
+        meio = meio - 1
+
     vetorA = [0] * (tamanhoA)
     vetorB = [0] * (tamanhoB)
 
@@ -13,13 +32,14 @@ def intercala(Y, comeco, meio, fim):
     for z in range(0, tamanhoB):
         vetorB[z] = Y[meio + 1 + z ]
 
+    print(vetorA, vetorB)
+
     i = 0
     j = 0 
     k = comeco
 
     while i < tamanhoA and j < tamanhoB:
         if vetorA[i] <= vetorB[j]:
-            print(2)
             Y[k] = vetorA[i]
             i = i + 1 
         else:
@@ -42,18 +62,17 @@ def intercala(Y, comeco, meio, fim):
         k = k + 1
     
 
+
 def mergeSort(X, esq,dir):
     if esq < dir:
 
-        meio = esq + (dir - esq) // 2
-
-
+        meio = (dir + esq) // 2
+        
         mergeSort(X, esq, meio)
         mergeSort(X, meio+1, dir)
-
         intercala(X,esq,meio,dir)
 
-lista = [3,4,1,2]
+lista = [9,3,0,5,8,4]
 f = len(lista)
 
 mergeSort(lista, 0, f-1)
