@@ -49,18 +49,23 @@ def intercala(Y, comeco, meio, fim):
     j = 0 
     k = comeco
 
-    while j < tamanhoB:
-        if vetorA[i] > vetorB[j] and i < j:
-            print("Contabilizou um")
+    while i < tamanhoA-1 and j < tamanhoB:
+        print("Comparação:",vetorA[i] , vetorB[j]  )
+        if vetorA[i] <= vetorB[j]:
+            Y[k] = vetorA[i]
             i = i + 1 
         else:
-            
+            Y[k] = vetorB[j]
             j = j + 1 
-            
+
+        if vetorA[i+1] <= vetorB[j]:
+            print(vetorA[i+1], vetorB[j])
+             
+
         k = k + 1
 
 
-    '''while i < tamanhoA:
+    while i < tamanhoA:
         Y[k] = vetorA[i]
         i = i + 1
         k = k + 1
@@ -69,10 +74,9 @@ def intercala(Y, comeco, meio, fim):
     while j < tamanhoB:
         Y[k] = vetorB[j]
         j = j + 1
-        k = k + 1'''
+        k = k + 1
     
-
-
+    
 def mergeSort(X, esq,dir):
     if esq < dir:
 
@@ -83,6 +87,16 @@ def mergeSort(X, esq,dir):
         intercala(X,esq,meio,dir)
 
 lista = [9,3,0,5,8,4]
+'''
+   (9,3)-
+   (9,0)
+   (9,5)-
+   (9,8)
+   (9,4)-
+   (3,0)-
+   (5,4)-
+   (8,4)
+    '''
 f = len(lista)
 
 mergeSort(lista, 0, f-1)
