@@ -21,7 +21,7 @@ def merge(A, aux, comeco, meio, fim):
         else:
             aux[k] = A[j]
             j = j + 1
-            contador += (meio - i + 1)        
+            contador = contador + (meio - i + 1)        
  
         k = k + 1
  
@@ -44,9 +44,9 @@ def mergesort(A, aux, comeco, fim):
     meio = comeco + (fim - comeco) // 2
     contador = 0
  
-    contador += mergesort(A, aux, comeco, meio)     
-    contador += mergesort(A, aux, meio + 1, fim)  
-    contador += merge(A, aux, comeco, meio, fim)   
+    contador = contador + mergesort(A, aux, comeco, meio)     
+    contador = contador + mergesort(A, aux, meio + 1, fim)  
+    contador = contador + merge(A, aux, comeco, meio, fim)   
  
     return contador
 
