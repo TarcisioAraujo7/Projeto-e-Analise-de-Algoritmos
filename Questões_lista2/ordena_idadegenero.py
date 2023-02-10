@@ -64,7 +64,7 @@ def quickSort(array, low, high):
         quickSort(array, pi + 1, high)
 
 
-lista = [ individuo("Alicia", 2003, 'F'), individuo("Lucas", 2012, 'M'), individuo("Tarcisio", 2002, 'M'), individuo("Julia", 2020, 'F')]
+lista = [ individuo("Xesquedela", 2003, 'F'),individuo("Alicia", 2003, 'F'), individuo("Lucas", 2012, 'M'), individuo("Tarcisio", 2002, 'M'), individuo("Julia", 2020, 'F')]
 n = len(lista)
 
 quickSort(lista, 0, n -1)
