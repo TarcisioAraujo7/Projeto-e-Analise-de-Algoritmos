@@ -1,0 +1,1 @@
+''' Arquivo pra testar soluções temporarias'''
