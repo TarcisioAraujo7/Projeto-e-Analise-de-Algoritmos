@@ -18,55 +18,52 @@ class individuo:
         return self.nome
     
     def __repr__(self):
-        return self.nome
+        return str(self.anoNasc) + ' - ' + self.gen
 
-def partition(array, low, high):
- 
-    # choose the rightmost element as pivot
-    pivot = array[high]
- 
-    # pointer for greater element
-    i = low - 1
- 
-    # traverse through all elements
-    # compare each element with pivot
-    for j in range(low, high):
-        if array[j].anoNasc <= pivot.anoNasc:
- 
-            # If element smaller than pivot is found
-            # swap it with the greater element pointed by i
+def primeiro_menor(ind1, ind2):
+    gen1 = ind1.gen
+    gen2 = ind2.gen
+    
+    # F < M < X
+
+    if gen1 == 'M' and gen2 == 'X':
+        return True
+    elif gen1 == 'F' and (gen2 == 'X' or gen2 == 'M'):
+        return True
+    else: 
+        return False
+
+def partition(lista, inicio, fim):
+    pivot = lista[fim]
+    i = inicio
+    for j in range(inicio, fim):
+        if lista[j].anoNasc < pivot.anoNasc:
+            lista[j], lista[i] = lista[i], lista[j]
+            # incrementa-se o limite dos elementos menores que o pivô
             i = i + 1
- 
-            # Swapping element at i with element at j
-            (array[i], array[j]) = (array[j], array[i])
- 
-    # Swap the pivot element with the greater element specified by i
-    (array[i + 1], array[high]) = (array[high], array[i + 1])
- 
-    # Return the position from where partition is done
-    return i + 1
- 
-# function to perform quicksort
- 
- 
-def quickSort(array, low, high):
-    if low < high:
- 
-        # Find pivot element such that
-        # element smaller than pivot are on the left
-        # element greater than pivot are on the right
-        pi = partition(array, low, high)
- 
-        # Recursive call on the left of pivot
-        quickSort(array, low, pi - 1)
- 
-        # Recursive call on the right of pivot
-        quickSort(array, pi + 1, high)
+        if  lista[j].anoNasc == pivot.anoNasc and primeiro_menor(lista[j], pivot):
+            lista[j], lista[i] = lista[i], lista[j]
+            # incrementa-se o limite dos elementos menores que o pivô
+            i = i + 1
+    lista[i], lista[fim] = lista[fim], lista[i]
+    return i
 
+def quicksort(lista, inicio, fim):
+    
+    if inicio < fim:
+        p = partition(lista, inicio, fim)
+        # recursivamente na sublista à esquerda (menores)
+        quicksort(lista, inicio, p-1)
+        # recursivamente na sublista à direita (maiores)
+        quicksort(lista, p+1, fim)
 
-lista = [ individuo("Xesquedela", 2003, 'F'),individuo("Alicia", 2003, 'F'), individuo("Lucas", 2012, 'M'), individuo("Tarcisio", 2002, 'M'), individuo("Julia", 2020, 'F')]
+# F < M < X
+lista = [ individuo("Xesquedela", 2003, 'X'),individuo("Alicia", 2003, 'X'),individuo("Xesquedele", 2003, 'M'),
+          individuo("Tarcisio", 2002, 'X'), individuo("Julia", 2002, 'F'), individuo("Lucas", 2002, 'M') ]
 n = len(lista)
 
-quickSort(lista, 0, n -1)
+quicksort(lista, 0, n -1)
 
+# F < M < X
+print(primeiro_menor(individuo("Xesquedela", 2003, 'M'), individuo("Alicia", 2003, 'F')))
 print(lista)
