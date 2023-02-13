@@ -91,29 +91,14 @@ def conectaFios(lista, n):
     mergeSort(lista, 0, n-1)
     
     indexAux = 0
-    vetorAux = [0] * (n-1)    
+    vetorAux = [-1] * (n-1)    
     nAux = 2
     mAux = 0
     vetorAux[0] = lista[nAux] + lista[nAux + 1]
 
-    while nAux < n and mAux < n-1:
-        if nAux == n-1:
-            indexAux = indexAux + 1
-            vetorAux[indexAux] = lista[nAux] + vetorAux[mAux]
-
-        elif lista[nAux] + lista[nAux + 1] >= lista[nAux] + vetorAux[mAux]:
-            indexAux = indexAux + 1
-            vetorAux[indexAux] = lista[nAux] + vetorAux[mAux]
-            mAux = mAux + 1
-            nAux = nAux + 1
-        else:
-            indexAux = indexAux + 1
-            vetorAux[indexAux] = lista[nAux] + lista[nAux + 1]
-            nAux = nAux + 2
+    while indexAux != n:
+        if nAux != n-1:
             
-    while indexAux < n-1:
-        indexAux = indexAux + 1
-        vetorAux[indexAux] = vetorAux[mAux] + vetorAux[mAux+1]
 
     print(vetorAux)
 
