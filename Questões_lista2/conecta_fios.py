@@ -14,10 +14,6 @@ consumindo-se 8x e depois os dois fios de tamanho 5 (original e conectado),
 consumindo-se 10x. Neste ponto temos dois fios de tamanho 8 (original e conectado),
 que serão unidos, consumindo-se 16x. Finalmente, este fio seria unido com o de
 tamanho 10 (conectado), consumindo 26x. No total, seria gasto (5+8+10+16+26)x =65x.
-
-6 14 18 23 26
-[1,1,2,2,3,3,4,4,5,5]
-[5, -1, 4, 4, 5, 8]
 '''
 
 def intercala(Y, comeco, meio, fim):
@@ -72,15 +68,6 @@ def mergeSort(X, esq,dir):
 
         intercala(X,esq,meio,dir)
 
-def retornaMenor(lista, n):
-    menor = lista[x]
-
-    for x in range(n):
-        if lista[x] < menor and lista[x] != -1:
-            menor = lista[x]
-            lista[x] = -1
-
-    return menor 
 
 def conectaFios(lista, n):
 
@@ -170,9 +157,6 @@ def conectaFios(lista, n):
 
     print(somas, saida)
     return saida
+
 lista = [2, 4, 8, 4, 5, 3]
 conectaFios(lista, len(lista))
-
-
-    
-
