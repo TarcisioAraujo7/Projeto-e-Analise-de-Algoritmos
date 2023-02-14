@@ -90,19 +90,87 @@ def conectaFios(lista, n):
 
     mergeSort(lista, 0, n-1)
     
-    indexAux = 0
-    vetorAux = [-1] * (n-1)    
+    indexAux = 1
+    somas = [-1] * (n-1)    
     nAux = 2
     mAux = 0
-    vetorAux[0] = lista[nAux] + lista[nAux + 1]
+    somas[0] = lista[0] + lista[1]
 
-    while indexAux != n:
-        if nAux != n-1:
+    while nAux < n-1:
+        if somas[1] != -1:
+            print(lista, nAux)
+            somaOriginais = lista[nAux] + lista[nAux + 1]
+            print("Soma Originais: ", lista[nAux], " + " ,lista[nAux + 1], " = ", somaOriginais)
+
+            somaFeitos = somas[mAux] + somas[mAux + 1]
+            print("Soma Feitos: ", somas[mAux], " + " ,somas[mAux + 1], " = ", somaFeitos)
+
+            somaOriginalFeito = lista[nAux] + somas[mAux]
+            print("Soma Original Feito: ", lista[nAux], " + " ,somas[mAux], " = ", somaOriginalFeito)
             
 
-    print(vetorAux)
+            if somaOriginais <= somaOriginalFeito and somaOriginais <= somaFeitos:
+                print('Entrou Originais')
+                somas[indexAux] = somaOriginais
+                indexAux = indexAux + 1
+                nAux = nAux + 2
+            elif somaOriginalFeito <= somaOriginais and somaOriginalFeito <= somaFeitos:
+                print('Entrou Original Feitos')
 
-lista = [2,3,4,4,5,8]
+                somas[indexAux] = somaOriginalFeito
+                mAux = mAux + 1
+                nAux = nAux + 1
+                indexAux = indexAux + 1
+            else:
+                print('Entrou Feitos')
+
+                somas[indexAux] = somaFeitos
+                indexAux = indexAux + 1
+                mAux = mAux + 2
+            print('------------------------------------------')
+        else:
+            somaOriginais = lista[nAux] + lista[nAux + 1]
+            print("Soma Originais: ", lista[nAux], " + " ,lista[nAux + 1], " = ", somaOriginais)
+            somaOriginalFeito = lista[nAux] + somas[mAux]
+            print("Soma Original Feitos: ", lista[nAux], " + " ,somas[mAux], " = ", somaOriginalFeito)
+
+
+            if somaOriginais <= somaOriginalFeito:
+                print('Entrou Originais')
+                somas[indexAux] = somaOriginais
+                indexAux = indexAux + 1
+                nAux = nAux + 2
+            else:
+                print('Entrou Original Feitos')
+                somas[indexAux] = somaOriginalFeito
+                mAux = mAux + 1
+                nAux = nAux + 1
+                indexAux = indexAux + 1
+            print('------------------------------------------')
+
+
+    
+    saida = 0
+    for x in range(n-1):
+        if somas[x] == -1:
+            print(somas,somas[x])
+            if (nAux == n-1 and lista[nAux] + somas[mAux] <= somas[mAux] + somas[mAux + 1]) or x == n-2 and nAux == n-1:
+                print('a')
+                somas[indexAux] = lista[nAux] + somas[mAux]
+                nAux = nAux + 1
+                mAux = mAux + 1
+                indexAux = indexAux + 1
+            else:
+                print('b')
+                somas[indexAux] = somas[mAux] + somas[mAux + 1]
+                indexAux = indexAux + 1
+                mAux = mAux + 2
+        
+        saida = saida + somas[x]
+
+    print(somas, saida)
+    return saida
+lista = [2, 4, 8, 4, 5, 3]
 conectaFios(lista, len(lista))
 
 
