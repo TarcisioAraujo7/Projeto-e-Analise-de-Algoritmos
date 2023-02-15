@@ -72,7 +72,6 @@ def uniao_difsimetrica(conjA, conjB, n, m):
             auxB = auxB + 1
         
         elif conjA[auxA] == conjB[auxB]:
-            print(uniao, indexUniao)
             uniao[indexUniao] = conjA[auxA]
             indexUniao = indexUniao + 1
             
