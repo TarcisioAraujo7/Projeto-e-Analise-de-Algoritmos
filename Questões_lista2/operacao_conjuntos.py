@@ -7,77 +7,96 @@ saída acima mencionados. Lembrete: Conjuntos não admitem números repetidos. L
 o vetor de saída, por representar um conjunto, não pode ter elementos repetidos.
 '''
 
-def max_heapify(A,n,i):
-    l = left(i)
-    r = right(i)
+def max_heap(A,n,i):
+    l = esquerda(i)
+    r = direita(i)
     
     if l < n and A[l] > A[i]:
-        largest = l
+        maior = l
     else:
-        largest = i
-    if r < n and A[r] > A[largest]:
-        largest = r
-    if largest != i:
-        A[i], A[largest] = A[largest], A[i]
-        max_heapify(A,n, largest)
+        maior = i
+    if r < n and A[r] > A[maior]:
+        maior = r
+    if maior != i:
+        A[i], A[maior] = A[maior], A[i]
+        max_heap(A,n, maior)
 
 
-def left(i):
+def esquerda(i):
     return 2 * i + 1
 
 
-def right(i):
+def direita(i):
     return 2 * i + 2
 
 
-def build_max_heap(A):
+def faz_maxHeap(A):
     n = len(A)
     for i in range(n, -1,-1):
-        max_heapify(A,n, i)
+        max_heap(A,n, i)
     for i in range(n-1,0,-1):
         A[0],A[i]=A[i],A[0]
-        max_heapify(A,i,0)
+        max_heap(A,i,0)
 
 
 def uniao_difsimetrica(conjA, conjB, n, m):
     auxA = 0
     auxB = 0
+    indexUniao = 0
+    indexDif = 0
 
-    uniao = []
-    dif_simetrica = []
+    uniao = [-1] * (n + m)
+    dif_simetrica = [-1] * (n + m)
 
-    build_max_heap(conjA)
-    build_max_heap(conjB)
+    faz_maxHeap(conjA)
+    faz_maxHeap(conjB)
 
     while auxA != n and auxB != m :
 
         if conjA[auxA] < conjB[auxB]:
-            uniao.append(conjA[auxA])
-            dif_simetrica.append(conjA[auxA])
+            uniao[indexUniao] = conjA[auxA]
+            indexUniao = indexUniao + 1
+
+            dif_simetrica[indexDif] = conjA[auxA]
+            indexDif = indexDif + 1
 
             auxA = auxA + 1
 
         elif conjB[auxB] < conjA[auxA]:
-            uniao.append(conjB[auxB])
-            dif_simetrica.append(conjB[auxB])
+            uniao[indexUniao] = conjB[auxB]
+            indexUniao = indexUniao + 1
+
+            dif_simetrica[indexDif] = conjB[auxB]
+            indexDif = indexDif + 1
 
             auxB = auxB + 1
         
         elif conjA[auxA] == conjB[auxB]:
-            uniao.append(conjA[auxA])
+            print(uniao, indexUniao)
+            uniao[indexUniao] = conjA[auxA]
+            indexUniao = indexUniao + 1
+            
             auxA = auxA + 1
             auxB = auxB + 1
     
     
     while auxA != n:
         
-        uniao.append(conjA[auxA])
-        dif_simetrica.append(conjA[auxA])
+        uniao[indexUniao] = conjA[auxA]
+        indexUniao = indexUniao + 1
+        
+        dif_simetrica[indexDif] = conjA[auxA]
+        indexDif = indexDif + 1
+        
         auxA = auxA + 1
     
     while auxB != m:
-        uniao.append(conjB[auxB])
-        dif_simetrica.append(conjB[auxB])
+        uniao[indexUniao] = conjB[auxB]
+        indexUniao = indexUniao + 1
+        
+        dif_simetrica[indexDif] = conjB[auxB]
+        indexDif = indexDif + 1
+        
         auxB = auxB + 1
 
 
