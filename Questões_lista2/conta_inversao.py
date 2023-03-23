@@ -20,6 +20,7 @@ def merge(A, aux, comeco, meio, fim):
             i = i + 1
         else:
             aux[k] = A[j]
+            print(A[i], A[j], '-', i,j)
             j = j + 1
             contador = contador + (meio - i + 1)        
  

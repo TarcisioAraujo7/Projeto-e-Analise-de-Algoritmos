@@ -33,9 +33,11 @@ def primeiro_menor(ind1, ind2):
     else: 
         return False
 
-def partition(lista, inicio, fim):
+def particao(lista, inicio, fim):
+
     pivot = lista[fim]
     i = inicio
+
     for j in range(inicio, fim):
         if lista[j].anoNasc < pivot.anoNasc:
             lista[j], lista[i] = lista[i], lista[j]
@@ -45,13 +47,15 @@ def partition(lista, inicio, fim):
             lista[j], lista[i] = lista[i], lista[j]
             # incrementa-se o limite dos elementos menores que o pivô
             i = i + 1
+
     lista[i], lista[fim] = lista[fim], lista[i]
+    
     return i
 
 def quicksort(lista, inicio, fim):
     
     if inicio < fim:
-        p = partition(lista, inicio, fim)
+        p = particao(lista, inicio, fim)
         # recursivamente na sublista à esquerda (menores)
         quicksort(lista, inicio, p-1)
         # recursivamente na sublista à direita (maiores)
